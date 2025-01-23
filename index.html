@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>welcome to hell</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0F0;
+            font-family: Comic Sans MS;
+            animation: strobe 0.1s infinite;
+            overflow: hidden;
+            cursor: none;
+        }
+        .bug {
+            position: absolute;
+            width: 240px;
+            height: 180px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            animation: crawl 0.8s infinite;
+            z-index: 999;
+            transform-origin: center;
+            transition: transform 0.3s;
+        }
+        .ant {
+            width: 180px;
+            height: 120px;
+            background-image: url('ant1.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            animation: crawl 0.5s infinite;
+            z-index: 999;
+            transform-origin: center;
+            transition: transform 0.3s;
+        }
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            max-width: 200px;
+            position: relative;
+            z-index: 1000;
+        }
+        button {
+            padding: 15px;
+            background: #333;
+            color: #FF0;
+            border: 2px dashed #F00;
+            cursor: crosshair;
+            position: relative;
+            z-index: 1000;
+        }
+        input {
+            background: #555;
+            color: #0FF;
+            border: 3px dotted #0F0;
+            padding: 5px;
+            margin: 10px 0;
+            transform: rotate(3deg);
+            position: relative;
+            z-index: 1000;
+        }
+        @keyframes strobe {
+            0% { background-color: #F00; }
+            50% { background-color: #00F; }
+            100% { background-color: #0F0; }
+        }
+        @keyframes crawl {
+            0% { transform: translateX(-2px) rotate(-3deg); }
+            50% { transform: translateX(2px) rotate(3deg); }
+            100% { transform: translateX(-2px) rotate(-3deg); }
+        }
+        .adblock-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ff0000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            animation: alertSlide 2s forwards;
+            z-index: 100000;
+            font-size: 24px;
+        }
+        .feedback {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(5deg);
+            background: #ff0;
+            padding: 20px;
+            border: 5px dashed red;
+            z-index: 100000;
+        }
+        .ad-video {
+            position: fixed;
+            width: 300px;
+            height: 200px;
+            border: 3px solid #f00;
+            z-index: 99999;
+            background: #000;
+        }
+        .video-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #f00;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            cursor: crosshair;
+        }
+        #cameraFeed {
+            position: fixed;
+            width: 200px;
+            border: 3px solid #0f0;
+            transform: translate(-50%, -50%);
+            transition: all 2s linear;
+            z-index: 9998;
+            display: none;
+        }
+        button[onclick*="handleFlashingButton"] {
+            background: #000;
+            border: 3px dotted #FFF;
+            color: transparent;
+            text-shadow: 0 0 8px #FFF;
+            transition: all 0.3s;
+        }
+        button[onclick*="handleFlashingButton"]:hover {
+            transform: rotate(5deg) scale(1.2);
+            opacity: 0.8;
+        }
+        @keyframes alertSlide {
+            0% { transform: translateY(-100%); }
+            10% { transform: translateY(0); }
+            90% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        #webcam {
+            position: fixed;
+            bottom: 10%;
+            right: 10%;
+            width: 300px;
+            border: 3px solid #FF0;
+            z-index: 100000;
+            display: none;
+            transform: rotate(-10deg);
+        }
+
+        
+    .dvd-logo {
+        position: fixed;
+        width: 150px;
+        height: 100px;
+        background-image: url('dvd-logo.png'); /* Replace with your DVD logo URL */
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: moveDVD 5s linear infinite, corruption 0.2s infinite alternate;
+        z-index: 9999;
+    }
+    @keyframes moveDVD {
+        0% { top: 0; left: 0; }
+        25% { top: 0; left: calc(100% - 150px); }
+        50% { top: calc(100% - 100px); left: calc(100% - 150px); }
+        75% { top: calc(100% - 100px); left: 0; }
+        100% { top: 0; left: 0; }
+    }
+    @keyframes corruption {
+        0%, 100% { transform: none; filter: none; }
+        50% { transform: rotate(5deg) scale(1.1); filter: hue-rotate(90deg) brightness(1.5); }
+    }
+</style>
+
+    </style>
+</head>
+<body>
+    <h1 style="animation: shake 0.5s infinite; position: relative;">WELCOME     TO HELl</h1>
+    
+    <p>ENTER NAME:</p>
+    <input type="text" id="name" readonly style="width: 300px">
+    <div class="keypad">
+        <button onclick="typeChar('2ABC')">2 ABC</button>
+        <button onclick="typeChar('3DEF')">3 DEF</button>
+        <button onclick="typeChar('4GHI')">4 GHI</button>
+        <button onclick="typeChar('5JKL')">5 JKL</button>
+        <button onclick="typeChar('6MNO')">6 MNO</button>
+        <button onclick="typeChar('7PQRS')">7 PQRS</button>
+        <button onclick="typeChar('8TUV')">8 TUV</button>
+        <button onclick="typeChar('9WXYZ')">9 WXYZ</button>
+        <button onclick="document.getElementById('name').value = ''">CLEAR</button>
+    </div>
+    <div id="dvdLogo" class="dvd-logo"></div>
+
+    <p>BIRTHYEAR: <span id="year">0</span></p>
+    <button onclick="document.getElementById('year').textContent++">+1</button>
+    <button onclick="multiplyYear()">×1.1</button>
+
+    <div>
+        <p>PASSWORD: <input type="password" style="transform: rotate(-5deg)"></p>
+        <button style="opacity: 0.1; font-size: 2px;" onclick="alert('PSYCH!')">Reset Password</button>
+    </div>
+    <video id="webcam" autoplay playsinline></video>
+
+    <div id="progress" style="width: 100%; background: #333">
+        <div id="bar" style="width: 1%; height: 20px; background: #F00"></div>
+    </div>
+
+    <button onclick="submitForm()" style="margin-top: 20px; background: #F0F">SUBMIT (DANGER)</button>
+    <button onclick="handleFlashingButton()" style="position: fixed; bottom: 10px; right: 10px; z-index: 10000;">🌈 STOP FLASHING 🌈</button>
+    <div id="cameraFeed"></div>
+
+    <script>
+        // Initial Annoyances
+        setTimeout(() => {
+            const alert = document.createElement('div');
+            alert.className = 'adblock-alert';
+            alert.innerHTML = '⚠️ ADBLOCK DETECTED! DISABLE IT NOW! ⚠️';
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 2000);
+            
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(stream => {
+                    cameraStream = stream;
+                    const liveCam = document.createElement('div');
+                    liveCam.style.position = 'fixed';
+                    liveCam.style.bottom = '10px';
+                    liveCam.style.right = '10px';
+                    liveCam.style.color = '#f00';
+                    liveCam.style.zIndex = '100000';
+                    liveCam.innerHTML = '🔴 LIVE CAMERA ACTIVE';
+                    document.body.appendChild(liveCam);
+                })
+                .catch(() => {});
+        }, 3000);
+
+        // Random Popups
+        const popups = [
+            () => alert('YOUR COMPUTER HAS VIRUS!'),
+            () => confirm('ACCEPT COOKIES?\n\n\n\n[   OK   ]  [   OK   ]') && location.reload(),
+            () => prompt('ENTER CREDIT CARD TO CONTINUE:'),
+            () => document.body.requestFullscreen()
+        ];
+
+        // Annoying Video Ads
+        const videoAds = [
+            'https://www.youtube.com/embed/mB1zKPEW4Q4?autoplay=1&mute=1',
+            'https://www.youtube.com/embed/_r0VX-aU_T8?autoplay=1&mute=1',
+            'https://www.youtube.com/embed/4fndeDfaEf8?autoplay=1&mute=1'
+        ];
+
+        function playVideoAd() {
+            const ad = document.createElement('iframe');
+            ad.className = 'ad-video';
+            ad.style.left = Math.random() * 70 + '%';
+            ad.style.top = Math.random() * 70 + '%';
+            ad.src = videoAds[Math.floor(Math.random()*videoAds.length)];
+            
+            const close = document.createElement('div');
+            close.className = 'video-close';
+            close.innerHTML = '×';
+            close.onclick = () => {
+                ad.remove();
+                setTimeout(playVideoAd, 5000);
+            };
+            
+            ad.appendChild(close);
+            document.body.appendChild(ad);
+        }
+
+        // Flying Camera Effect
+        function flyCamera() {
+            const corners = [
+                {x: 10, y: 10},
+                {x: 90, y: 10},
+                {x: 90, y: 90},
+                {x: 10, y: 90}
+            ];
+            
+            const start = corners[Math.floor(Math.random()*4)];
+            const end = corners[(Math.floor(Math.random()*3)+1)%4];
+            
+            const feed = document.createElement('video');
+            feed.srcObject = cameraStream || '';
+            feed.autoplay = true;
+            feed.style.left = start.x + '%';
+            feed.style.top = start.y + '%';
+            feed.style.display = 'block';
+            
+            document.getElementById('cameraFeed').appendChild(feed);
+            setTimeout(() => {
+                feed.style.left = end.x + '%';
+                feed.style.top = end.y + '%';
+            }, 50);
+            setTimeout(() => feed.remove(), 2050);
+        }
+
+        // Feedback Form
+        function showFeedback() {
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback';
+            feedback.innerHTML = `
+                <h3>HOW ARE WE DOING? (REQUIRED)</h3>
+                <textarea rows="3" style="width:100%"></textarea>
+                <div>
+                    <button onclick="this.parentElement.parentElement.remove()">CLOSE</button>
+                    <button onclick="alert('FEEDBACK NOT SENT!')">SUBMIT</button>
+                </div>
+            `;
+            document.body.appendChild(feedback);
+        }
+
+        // Main Initialization
+        let bugs = [], ants = [], mouseX = 0, mouseY = 0;
+        let flashSpeed = 0.1, isFlashing = true;
+        let lastButton = null, pressCount = 0, lastPressTime = 0, typeTimeout = null;
+
+        function createBug() {
+            const bug = document.createElement('div');
+            bug.className = 'bug';
+            bug.style.backgroundImage = `url('bug${Math.random() > 0.5 ? 1 : 2}.png')`;
+            bug.style.left = Math.random() * window.innerWidth + 'px';
+            bug.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(bug);
+            return bug;
+        }
+
+        function createAnt() {
+            const ant = document.createElement('div');
+            ant.className = 'ant';
+            ant.style.left = Math.random() * window.innerWidth + 'px';
+            ant.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(ant);
+            return ant;
+        }
+
+        function moveInsects() {
+            bugs.forEach(bug => {
+                const dx = mouseX - bug.offsetLeft;
+                const dy = mouseY - bug.offsetTop;
+                bug.style.left = bug.offsetLeft + dx * 0.02 + 'px';
+                bug.style.top = bug.offsetTop + dy * 0.02 + 'px';
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI + 180;
+                bug.style.transform = `rotate(${angle}deg) scaleX(${dx > 0 ? -1 : 1})`;
+            });
+
+            ants.forEach(ant => {
+                const dx = mouseX - ant.offsetLeft;
+                const dy = mouseY - ant.offsetTop;
+                ant.style.left = ant.offsetLeft + dx * 0.05 + 'px';
+                ant.style.top = ant.offsetTop + dy * 0.05 + 'px';
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI + 180;
+                ant.style.transform = `rotate(${angle}deg) scaleX(${dx > 0 ? -1 : 1})`;
+            });
+        }
+
+        function typeChar(chars) {
+            const now = Date.now();
+            const nameField = document.getElementById('name');
+            if (chars[0] === lastButton && (now - lastPressTime) < 1000) {
+                pressCount++;
+                nameField.value = nameField.value.slice(0, -1);
+            } else {
+                pressCount = 1;
+            }
+            const charIndex = (pressCount - 1) % (chars.length - 1);
+            nameField.value += chars[charIndex + 1];
+            lastButton = chars[0];
+            lastPressTime = now;
+            clearTimeout(typeTimeout);
+            typeTimeout = setTimeout(() => {
+                pressCount = 0;
+                lastButton = null;
+            }, 1000);
+        }
+
+        function submitForm() {
+            alert('ERROR 666: FORM CORRUPTED');
+            document.body.innerHTML = '<h1>the bugs ate your form submit it again</h1>';
+            setInterval(() => window.location = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 2000);
+        }
+
+        function handleFlashingButton() {
+            if (!isFlashing) return;
+            const success = Math.random() < 0.33;
+            if (success) {
+                document.body.style.animation = 'none';
+                document.body.style.backgroundColor = '#000';
+                isFlashing = false;
+                this.textContent = 'FLASHING STOPPED';
+            } else {
+                flashSpeed *= 0.5;
+                document.body.style.animation = `strobe ${flashSpeed}s infinite`;
+                this.textContent = `FLASHING ${Math.round(1/flashSpeed)}X FASTER`;
+                if (Math.random() < 0.2) this.disabled = true;
+            }
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        }
+
+        function multiplyYear() {
+            const yearElement = document.getElementById('year');
+            if (Math.random() < 0.1) {
+                yearElement.textContent = 0;
+                this.textContent = 'RESET!';
+                setTimeout(() => this.textContent = '×1.1', 1000);
+            } else {
+                yearElement.textContent = Math.round(yearElement.textContent * 1.1);
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            document.body.style.backgroundPosition = `${e.clientX/10}px ${e.clientY/10}px`;
+        });
+
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Initialize
+        for(let i = 0; i < 10; i++) bugs.push(createBug());
+        for(let i = 0; i < 20; i++) ants.push(createAnt());
+        setInterval(moveInsects, 50);
+        setInterval(() => bugs.push(createBug()), 5000);
+        setInterval(() => ants.push(createAnt()), 3000);
+        setInterval(() => Math.random() < 0.3 && popups[Math.floor(Math.random()*popups.length)](), 10000);
+        setInterval(playVideoAd, 30000);
+        setInterval(flyCamera, 15000);
+        setInterval(() => Math.random() < 0.2 && showFeedback(), 20000);
+        let progress = 1;
+        setInterval(() => {
+            progress = Math.min(progress + (Math.random() - 0.5), 100);
+            document.getElementById('bar').style.width = progress + '%';
+        }, 200);
+
+        // Existing script code remains the same
+
+        // Enable webcam and show live feed
+        async function enableWebcam() {
+            const webcam = document.getElementById('webcam');
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                webcam.srcObject = stream;
+                webcam.style.display = 'block';
+                setTimeout(() => {
+                    webcam.style.transform = 'rotate(5deg) scale(1.2)';
+                }, 5000); // Add chaos with timed rotation
+            } catch (error) {
+                console.error('Error accessing webcam:', error);
+                alert('Unable to access webcam! Please check permissions.');
+            }
+        }
+
+        // Automatically start webcam feed after a delay
+        setTimeout(enableWebcam, 4000);
+        const dvdLogo = document.getElementById('dvdLogo');
+
+        const dvdContainer = document.body;
+
+function createDVDLogo() {
+    const dvdLogo = document.createElement('div');
+    dvdLogo.className = 'dvd-logo';
+    dvdLogo.style.left = Math.random() * (window.innerWidth - 150) + 'px';
+    dvdLogo.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+    dvdContainer.appendChild(dvdLogo);
+
+    let x = Math.random() > 0.5 ? 2 : -2;
+    let y = Math.random() > 0.5 ? 2 : -2;
+
+    function move() {
+        const rect = dvdLogo.getBoundingClientRect();
+        if (rect.left <= 0 || rect.right >= window.innerWidth) x *= -1;
+        if (rect.top <= 0 || rect.bottom >= window.innerHeight) y *= -1;
+
+        dvdLogo.style.left = rect.left + x + 'px';
+        dvdLogo.style.top = rect.top + y + 'px';
+
+        requestAnimationFrame(move);
+    }
+
+    dvdLogo.addEventListener('click', multiplyLogos);
+
+    move();
+}
+
+function multiplyLogos(event) {
+    const numNewLogos = Math.floor(Math.random() * 3) + 1; // 1 to 3 new logos
+    for (let i = 0; i < numNewLogos; i++) {
+        createDVDLogo();
+    }
+    event.stopPropagation(); // Prevent parent elements from being clicked
+}
+
+// Create the first DVD logo
+createDVDLogo();
+
+
+
+    </script>
+</body>
+</html>
